@@ -1,0 +1,56 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: ID!
+  fullName: String!
+  email: String!
+  isActive: Boolean!
+  roles: [ValidRoles!]!
+}
+
+enum ValidRoles {
+  admin
+  superUser
+  user
+}
+
+type Category {
+  id: ID!
+  name: String!
+  description: String
+}
+
+type Query {
+  users(offset: Int = 0, limit: Int = 10, search: String): [User!]!
+  user(id: ID!): User!
+  categories(offset: Int = 0, limit: Int = 10, search: String): [Category!]!
+  category(id: ID!): Category!
+}
+
+type Mutation {
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  blockUser(id: ID!): User!
+  createCategory(createCategoryInput: CreateCategoryInput!): Category!
+  updateCategory(updateCategoryInput: UpdateCategoryInput!): Category!
+  removeCategory(id: ID!): Category!
+}
+
+input UpdateUserInput {
+  id: ID!
+  fullName: String
+  roles: [ValidRoles!]
+  isActive: Boolean
+}
+
+input CreateCategoryInput {
+  name: String!
+  description: String
+}
+
+input UpdateCategoryInput {
+  name: String
+  description: String
+  id: ID!
+}
