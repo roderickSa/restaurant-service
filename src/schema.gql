@@ -2,12 +2,31 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Category {
+  id: ID!
+  name: String!
+  description: String
+  product: Product!
+}
+
+type Product {
+  id: ID!
+  name: String!
+  stock: Float
+  price: Float!
+  isActive: Boolean!
+  category: Category!
+  createdAt: String!
+  updatedAt: String!
+}
+
 type User {
   id: ID!
   fullName: String!
   email: String!
   isActive: Boolean!
   roles: [ValidRoles!]!
+  product: Product!
 }
 
 enum ValidRoles {
@@ -16,17 +35,13 @@ enum ValidRoles {
   user
 }
 
-type Category {
-  id: ID!
-  name: String!
-  description: String
-}
-
 type Query {
   users(offset: Int = 0, limit: Int = 10, search: String): [User!]!
   user(id: ID!): User!
   categories(offset: Int = 0, limit: Int = 10, search: String): [Category!]!
   category(id: ID!): Category!
+  products(offset: Int = 0, limit: Int = 10, search: String): [Product!]!
+  product(id: ID!): Product!
 }
 
 type Mutation {
@@ -34,7 +49,9 @@ type Mutation {
   blockUser(id: ID!): User!
   createCategory(createCategoryInput: CreateCategoryInput!): Category!
   updateCategory(updateCategoryInput: UpdateCategoryInput!): Category!
-  removeCategory(id: ID!): Category!
+  createProduct(createProductInput: CreateProductInput!): Product!
+  updateProduct(updateProductInput: UpdateProductInput!): Product!
+  deactivateProduct(id: ID!): Product!
 }
 
 input UpdateUserInput {
@@ -52,5 +69,22 @@ input CreateCategoryInput {
 input UpdateCategoryInput {
   name: String
   description: String
+  id: ID!
+}
+
+input CreateProductInput {
+  name: String!
+  stock: Float! = 0
+  price: Float!
+  isActive: Boolean
+  categoryId: ID!
+}
+
+input UpdateProductInput {
+  name: String
+  stock: Float = 0
+  price: Float
+  isActive: Boolean
+  categoryId: ID
   id: ID!
 }

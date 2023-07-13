@@ -74,13 +74,13 @@ export class CategoriesService {
     return await this.categoryRepository.save(category);
   }
 
-  async remove(id: string): Promise<Category> {
+  /* async remove(id: string): Promise<Category> {
     const category = await this.findOne(id);
 
     await this.categoryRepository.delete(category);
 
     return category;
-  }
+  } */
 
   private ErrorHandler(error: any): void {
     if (error.code === '23505') {

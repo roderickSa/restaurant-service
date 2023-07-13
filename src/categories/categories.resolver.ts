@@ -46,10 +46,10 @@ export class CategoriesResolver {
     );
   }
 
-  @Mutation(() => Category)
+  /* @Mutation(() => Category)
   async removeCategory(
     @Args('id', { type: () => ID }, ParseUUIDPipe) id: string,
   ): Promise<Category> {
     return this.categoriesService.remove(id);
-  }
+  } */
 }
