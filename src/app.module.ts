@@ -10,6 +10,8 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { CommonModule } from './common/common.module';
 import { UsersModule } from './users/users.module';
 import { ProductsModule } from './products/products.module';
+import { OrdersModule } from './orders/orders.module';
+import { OrderDetailModule } from './order-detail/order-detail.module';
 
 @Module({
   imports: [
@@ -35,6 +37,8 @@ import { ProductsModule } from './products/products.module';
     CategoriesModule,
     CommonModule,
     ProductsModule,
+    OrdersModule,
+    OrderDetailModule,
   ],
 })
 export class AppModule {}

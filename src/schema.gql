@@ -16,8 +16,36 @@ type Product {
   price: Float!
   isActive: Boolean!
   category: Category!
+  orderDetail: OrderDetail!
   createdAt: String!
   updatedAt: String!
+}
+
+type OrderDetail {
+  id: ID!
+  picked_up: Boolean!
+  quantity: Float!
+  s_quantity: Float!
+  price: Float!
+  unit_amount: Float!
+  order: Order!
+  product: Product!
+}
+
+type Order {
+  id: ID!
+  status: OrderStatus!
+  amount: Float!
+  user: User!
+  orderDetail: [OrderDetail!]!
+  createdAt: String!
+  updatedAt: String!
+}
+
+enum OrderStatus {
+  pending
+  canceled
+  sent
 }
 
 type User {
@@ -27,6 +55,7 @@ type User {
   isActive: Boolean!
   roles: [ValidRoles!]!
   product: Product!
+  order: Order!
 }
 
 enum ValidRoles {
@@ -42,6 +71,8 @@ type Query {
   category(id: ID!): Category!
   products(offset: Int = 0, limit: Int = 10, search: String): [Product!]!
   product(id: ID!): Product!
+  orders(offset: Int = 0, limit: Int = 10, search: String): [Order!]!
+  order(id: ID!): Order!
 }
 
 type Mutation {
@@ -52,6 +83,12 @@ type Mutation {
   createProduct(createProductInput: CreateProductInput!): Product!
   updateProduct(updateProductInput: UpdateProductInput!): Product!
   deactivateProduct(id: ID!): Product!
+  order(createOrderDetailInputArr: CreateOrderDetailInputArr!): Order!
+  addOrderDetailToOrder(addOrderDetailInput: AddOrderDetailInput!): Order!
+  updateOrderDetailToOrder(updateOrderDetailInput: UpdateOrderDetailInput!): Order!
+  removeOrderDetailToOrder(orderDetailId: ID!): Order!
+  updateOrder(updateOrderInput: UpdateOrderInput!): Order!
+  cancelOrder(id: ID!): Order!
 }
 
 input UpdateUserInput {
@@ -76,7 +113,7 @@ input CreateProductInput {
   name: String!
   stock: Float! = 0
   price: Float!
-  isActive: Boolean
+  isActive: Boolean = false
   categoryId: ID!
 }
 
@@ -84,7 +121,33 @@ input UpdateProductInput {
   name: String
   stock: Float = 0
   price: Float
-  isActive: Boolean
+  isActive: Boolean = false
   categoryId: ID
   id: ID!
+}
+
+input CreateOrderDetailInputArr {
+  orderDetail: [CreateOrderDetailInput!]!
+}
+
+input CreateOrderDetailInput {
+  quantity: Float!
+  productId: ID!
+}
+
+input AddOrderDetailInput {
+  quantity: Float!
+  productId: ID!
+  orderId: ID!
+}
+
+input UpdateOrderDetailInput {
+  id: ID!
+  quantity: Float!
+}
+
+input UpdateOrderInput {
+  id: ID!
+  userId: ID
+  status: OrderStatus
 }

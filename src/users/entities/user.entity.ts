@@ -1,5 +1,6 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
 import { ValidRoles } from 'src/auth/enums/valid-roles.enum';
+import { Order } from 'src/orders/entities/order.entity';
 import { Product } from 'src/products/entities/product.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -38,4 +39,8 @@ export class User {
   @OneToMany(() => Product, (product) => product.user, { lazy: true })
   @Field(() => Product)
   product: Product[];
+
+  @OneToMany(() => Order, (order) => order.user, { lazy: true })
+  @Field(() => Order)
+  order: Order[];
 }
