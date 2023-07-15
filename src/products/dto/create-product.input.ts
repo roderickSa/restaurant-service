@@ -31,7 +31,7 @@ export class CreateProductInput {
   @Field(() => Boolean, { nullable: true })
   @IsBoolean()
   @IsOptional()
-  isActive? = false;
+  isActive? = true;
 
   @Field(() => ID)
   @IsUUID()

@@ -113,7 +113,7 @@ input CreateProductInput {
   name: String!
   stock: Float! = 0
   price: Float!
-  isActive: Boolean = false
+  isActive: Boolean = true
   categoryId: ID!
 }
 
@@ -121,7 +121,7 @@ input UpdateProductInput {
   name: String
   stock: Float = 0
   price: Float
-  isActive: Boolean = false
+  isActive: Boolean = true
   categoryId: ID
   id: ID!
 }
