@@ -11,6 +11,7 @@
 <ol>
   <li>nestjs</li>
   <li>postgres</li>
+  <li>graphql</li>
 </ol>
 
 ### 1. Clonar proyecto
