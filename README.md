@@ -37,7 +37,11 @@ CLOUDINARY_API_SECRET
 docker-compose up -d
 ```
 
-### 6 Levantar: `yarn start:dev`
+### 6 Levantar proyecto
+
+```
+yarn start:dev
+```
 
 ```
 graphql => http://localhost:3000/graphql
