@@ -12,6 +12,7 @@
   <li>nestjs</li>
   <li>postgres</li>
   <li>graphql</li>
+  <li>cloudinary(images)</li>
 </ol>
 
 ### 1. Clonar proyecto
@@ -20,14 +21,26 @@
 
 ### 3. Clonar el archivo `.env.template` y renombrarlo a `.env`
 
-## 4 Levantar la base de datos
+### 4. Cambiar las variables de entorno
+
+<strong>suficiente con estas</strong>:
+
+```env
+CLOUDINARY_CLOUD_NAME
+CLOUDINARY_API_KEY
+CLOUDINARY_API_SECRET
+```
+
+## 5 Levantar la base de datos
 
 ```
 docker-compose up -d
 ```
 
-### 5 Levantar: `yarn start:dev`
+### 6 Levantar: `yarn start:dev`
 
 ```
-http://localhost:3000/graphql
+graphql => http://localhost:3000/graphql
+
+api => http://localhost:3000(auth and images)
 ```
