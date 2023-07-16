@@ -12,6 +12,8 @@ import { UsersModule } from './users/users.module';
 import { ProductsModule } from './products/products.module';
 import { OrdersModule } from './orders/orders.module';
 import { OrderDetailModule } from './order-detail/order-detail.module';
+import { ProductImagesModule } from './product-images/product-images.module';
+import { CloudinaryModule } from './cloudinary/cloudinary.module';
 
 @Module({
   imports: [
@@ -39,6 +41,8 @@ import { OrderDetailModule } from './order-detail/order-detail.module';
     ProductsModule,
     OrdersModule,
     OrderDetailModule,
+    ProductImagesModule,
+    CloudinaryModule,
   ],
 })
 export class AppModule {}

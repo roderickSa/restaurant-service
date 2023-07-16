@@ -1,6 +1,7 @@
 import { ObjectType, Field, ID } from '@nestjs/graphql';
 import { Category } from 'src/categories/entities/category.entity';
 import { OrderDetail } from 'src/order-detail/entities/order-detail.entity';
+import { ProductImage } from 'src/product-images/entities/product-image.entity';
 import { User } from 'src/users/entities/user.entity';
 import {
   Column,
@@ -45,6 +46,12 @@ export class Product {
 
   @ManyToOne(() => User, (user) => user.product)
   user: User;
+
+  @OneToMany(() => ProductImage, (productImage) => productImage.product, {
+    lazy: true,
+  })
+  @Field(() => [ProductImage])
+  images: ProductImage[];
 
   @CreateDateColumn()
   @Field(() => String)
